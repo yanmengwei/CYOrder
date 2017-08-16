@@ -1,0 +1,114 @@
+
+CREATE TABLE IF NOT EXISTS 'menu' (
+   'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+   'name' varchar(50),
+   'price' float,
+   'discount_price' float,
+   'category_id' int unsigned,
+   'brief' varchar(120),
+   'is_enable' tinyint,
+   'img_address' varchar(255),
+   'create_time' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   'is_special' tinyint
+);
+
+CREATE TABLE IF NOT EXISTS 'category' (
+   'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+   'name' varchar(24),
+   'create_time' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS 'evaluate_count' (
+   'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+   'menu_id' int unsigned,
+   'down_count' int,
+   'up_count' int
+   );
+
+CREATE TABLE IF NOT EXISTS 'order_t' (
+   'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+   'number' int unsigned,
+   'waiter_id' int unsigned,
+   'total' float,
+   'discount' float,
+   'paid' float,
+   'pay_status' tinyint,
+   'pay_id' int,
+   'paid_time' DATETIME,
+   'remarks' varchar(1024),
+   'is_star' tinyint,
+   'create_time' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS 'order_t_list' (
+   'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+   'order_id' int unsigned,
+   'menu_id' int unsigned,
+   'package_id' int unsigned,
+   'count' int,
+   'status' int,
+   'start_process_time' DATETIME,
+   'ready_time' DATETIME,
+   'serve_time' DATETIME,
+   'is_evaluation' int,
+   'evaluate' int,
+   'create_time' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS 'package' (
+   'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+   'name' varchar(24),
+   'suggest_persons' int unsigned,
+   'price' float,
+   'create_time' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS 'package_list' (
+   'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+   'package_id' int unsigned,
+   'menu_id' int unsigned,
+   'count' int,
+   'create_time' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS 'manager' (
+   'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+   'account' VARCHAR(24),
+   'password' VARCHAR(24),
+   'name' varchar(24),
+   'type' int,
+   'create_time' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS 'employee' (
+   'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+   'name' varchar(24),
+   'gender' varchar(4),
+   'phone' VARCHAR(24),
+   'email' VARCHAR(255),
+   'create_time' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS 'evaluate_restaurant' (
+   'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+   'environment' int,
+   'attitude' int,
+   'flavor' int,
+   'evaluation' VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS 'pay_method' (
+   'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+   'name' VARCHAR(20),
+   'enabled' tinyint
+);
+CREATE TABLE IF NOT EXISTS 'daily_special' (
+'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+'menu_id' int unsigned,
+'special_price' float,
+'create_time' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS 'chef_advocate' (
+'id' integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+'menu_id' int unsigned,
+'create_time' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

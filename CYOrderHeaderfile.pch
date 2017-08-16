@@ -1,0 +1,61 @@
+//
+//  CYOrderHeaderfile.pch
+//  CYOrder
+//
+//  Created by ymw on 17/4/1.
+//  Copyright © 2017年 ymw. All rights reserved.
+//
+
+#ifndef CYOrderHeaderfile_pch
+#define CYOrderHeaderfile_pch
+#import "CYMenuModel.h"
+#import <Masonry/Masonry.h>
+#import "ProgressHUD.h"
+#import <MJExtension/MJExtension.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "CY_Size_header.h"
+#import "DataBase.h"
+#import "CYMenuModel.h"
+#import "CYCategoryModel.h"
+#import "CYPackageListModel.h"
+#import "CYPackageModel.h"
+#import "CYOrderListModel.h"
+#import "CYOrderModel.h"
+#import "CYTools.h"
+#define VersionKey @"version"
+
+#define CY_REQUESR_URL @""
+#ifdef DEBUG
+#define CYLog(...) NSLog(__VA_ARGS__)
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#define CYLog(...)
+#define NSLog(...)
+#endif
+
+#ifdef DEBUG
+#define DLog(fmt, ...) NSLog((@"^ %s line %d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#   define DLog(...)
+#endif
+
+
+#define AutoSizeScaleX [UIScreen mainScreen].bounds.size.width/375
+#define AutoSizeScaleY [UIScreen mainScreen].bounds.size.height/667
+#define CGRectMakeFix(x,y,width,height) CGRectMake(x*AutoSizeScaleX, y*AutoSizeScaleY, width*AutoSizeScaleX, height*AutoSizeScaleY)
+#define FunctionLog ZYLog(@"%s",__func__)
+#define CollectionCellGap 20
+
+
+
+#ifndef SystemVersion
+#define SystemVersion _DeviceSystemVersion()
+#endif
+
+#ifndef iOS8Later
+#define iOS8Later (SystemVersion >= 8)
+#endif
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* CYOrderHeaderfile_pch */
